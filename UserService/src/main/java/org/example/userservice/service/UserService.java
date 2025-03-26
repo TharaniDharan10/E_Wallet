@@ -29,7 +29,7 @@ public class UserService implements UserDetailsService {
     UserRepository userRepository;
 
     @Autowired
-    KafkaTemplate<String, String> kafkaTemplate;
+    KafkaTemplate<String, String> kafkaTemplate;    //to send topic and message to kafka
 
     @Autowired
     ObjectMapper objectMapper;  //we can also use Gson.I use objectMapper here to convert json into string as i need to pass value to kafka
@@ -62,7 +62,7 @@ public class UserService implements UserDetailsService {
            //WalletService would require phoneNo, userStatus
 
 //      to send these data to kafka, we can either create our own dto and then map it to string using objectMapper.writeValueAsString (or) can use class ObjectNode (or) class JsonObject
-//        Dto can be created if i knoww that i will be using this at multiple places.Just that here i know that i used only ones, so used ObjectNode
+//        Dto can be created if i know that i will be using this at multiple places.Just that here i know that i used only ones, so used ObjectNode
         ObjectNode objectNode = objectMapper.createObjectNode();    //helps to create key value pairs of an object
         objectNode.put(EMAIL,user.getEmail());
         objectNode.put(PHONENO,user.getPhoneNo());
