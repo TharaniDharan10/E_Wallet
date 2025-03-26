@@ -5,9 +5,7 @@ import org.example.userservice.dto.CreateUserRequest;
 import org.example.userservice.model.User;
 import org.example.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -19,4 +17,5 @@ public class UserController {
     public User createUser(@RequestBody @Valid CreateUserRequest userRequest) {
     return userService.createUser(userRequest);
     }
+
 }
