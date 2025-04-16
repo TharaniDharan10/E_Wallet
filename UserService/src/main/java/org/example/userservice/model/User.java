@@ -62,8 +62,9 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return phoneNo;     //we return phoneNo as this is unique thing for us
-    }
+        return phoneNo;
+    }//we return phoneNo as this is unique thing for us
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

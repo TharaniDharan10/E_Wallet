@@ -15,7 +15,12 @@ public class UserController {
 
     @PostMapping("/user")
     public User createUser(@RequestBody @Valid CreateUserRequest userRequest) {
-    return userService.createUser(userRequest);
+        return userService.createUser(userRequest);
+    }
+
+    @GetMapping("/user")
+    public User getUser(@RequestParam("phoneNo") String phoneNo) {
+        return userService.getUserByPhoneNo(phoneNo);
     }
 
 }

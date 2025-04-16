@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
-    public User createUser(@Valid CreateUserRequest userRequest) {
+    public User  createUser(@Valid CreateUserRequest userRequest) {
         User user = UserMapper.mapToUser(userRequest);
         user.setUserType(UserType.USER);
         user.setAuthorities("USER");
@@ -77,6 +77,10 @@ public class UserService implements UserDetailsService {
         return user;
 
     }//when i run this application and hit /user, it published data to kafka .That can be viewed by
+
+    public User getUserByPhoneNo(String phoneNo) {
+        return userRepository.findByPhoneNo(phoneNo);
+    }
 //    cd C:\kafka_2.12-3.9.0\bin\windows
 //    .\kafka-topics.bat --bootstrap-server localhost:9092 –list	//lists topics.We can see a new name created for this.Ensure while hitting /user, check if is it 8080 or some other port and hit accordingly.Also by default its relpication is 1 and its partition is 1
     //In companies what they do is, they create topics separately with required configurations and then add then to application.
