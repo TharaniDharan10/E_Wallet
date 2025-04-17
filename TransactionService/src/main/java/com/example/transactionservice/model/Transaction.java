@@ -27,6 +27,8 @@ public class Transaction {
 
     String transactionId;
 
+    String transactionStatusMessage;
+
     Double amount;
 
     String purpose;
