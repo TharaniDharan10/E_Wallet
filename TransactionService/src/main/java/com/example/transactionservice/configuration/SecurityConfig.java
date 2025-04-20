@@ -20,6 +20,7 @@ public class SecurityConfig {
         log.info("Inside Security filterchain");
         http.authorizeHttpRequests(authorize->authorize
                         .requestMatchers(HttpMethod.POST, "/transaction").hasAuthority("USER")  //bcoz anyone with authority user should only be able to initiate a transaction, not a service
+                        .requestMatchers(HttpMethod.GET, "/transaction/all").hasAuthority("USER")
                         .anyRequest().permitAll())
                 .formLogin(withDefaults())//browser
                 .httpBasic(withDefaults())//clients

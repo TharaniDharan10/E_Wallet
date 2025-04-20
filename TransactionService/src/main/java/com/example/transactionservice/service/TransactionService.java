@@ -10,6 +10,9 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -104,5 +107,12 @@ public class TransactionService implements UserDetailsService {
 
         return transaction.getTransactionId();
 
+    }
+
+    public List<Transaction> findTransactions(String senderPhoneNo, Integer pageNo, Integer limit) {
+        Pageable pageable = PageRequest.of(pageNo, limit);  //Pageable is request
+        return transactionRepository.findBySenderPhoneNo(senderPhoneNo,pageable); //This is used when we want to return
+//        Page<Transaction> response = transactionRepository.findBySenderPhoneNo(senderPhoneNo,pageable); //Page is response  //This Page class is used when we want to know how many pages are there and stuff.
+//        return response.getContent();   //this Page has some more methods to explore
     }
 }
